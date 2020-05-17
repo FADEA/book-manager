@@ -81,8 +81,8 @@ public class TSDaoImpl implements TSDao{
     Statement st=null;
     ResultSet rs=null;
     @Override
-    public void insert(long tno, long sno, Date btime, Date rtime) {
-        String sql="insert into TS values("+String.valueOf(tno)+","+String.valueOf(sno)+",'"+btime+"','"+rtime+"')";
+    public void insert(long bno, long tno, String btime, String rtime) {
+        String sql="insert into TS values("+String.valueOf(bno)+","+String.valueOf(tno)+",'"+btime+"','"+rtime+"')";
         try{
             conn= getConnection();
             st=conn.createStatement();
@@ -95,9 +95,10 @@ public class TSDaoImpl implements TSDao{
         }
     }
 
+
     @Override
-    public void erase(long tno, long sno) {
-        String sql="delete from TS where Tno = "+String.valueOf(tno) + "and Sno="+String.valueOf(sno);
+    public void erase(long bno, long tno) {
+        String sql="delete from TS where Bno = "+String.valueOf(bno) + " and Tno="+String.valueOf(tno);
         try{
             conn=getConnection();
             st=conn.createStatement();
@@ -111,8 +112,8 @@ public class TSDaoImpl implements TSDao{
     }
 
     @Override
-    public int exist(long tno, long sno) {
-        String sql="select count(*) from TS where Tno = "+String.valueOf(tno) + "and Sno="+String.valueOf(sno);;
+    public int exist(long bno, long tno) {
+        String sql="select count(*) from TS where Bno = "+String.valueOf(bno) + " and Tno="+String.valueOf(tno);;
         try{
             conn= getConnection();
             st=conn.createStatement();
@@ -129,5 +130,35 @@ public class TSDaoImpl implements TSDao{
             release(conn, st, rs);
         }
         return 0;
+    }
+
+    @Override
+    public void change_btime(long bno, long tno, String btime) {
+        String sql="update TS set Btime='"+btime+"' where Bno="+String.valueOf(bno)+" and Tno="+String.valueOf(tno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_rtime(long bno, long tno, String rtime) {
+        String sql="update TS set Rtime='"+rtime+"' where Bno="+String.valueOf(bno)+" and Tno="+String.valueOf(tno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
     }
 }

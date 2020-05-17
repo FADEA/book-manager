@@ -156,4 +156,64 @@ public class AdminsDaoImpl implements AdminsDao{
         }
         return 0;
     }
+
+    @Override
+    public void change_aname(long ano, String aname) {
+        String sql="update Admins set aname='"+aname+"' where ano="+String.valueOf(ano);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_apass(long ano, String apass) {
+        String sql="update Admins set apass='"+apass+"' where ano="+String.valueOf(ano);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_phone(long ano, String phone) {
+        String sql="update Admins set phone='"+phone+"' where ano="+String.valueOf(ano);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_id(long ano, String id) {
+        String sql="update Admins set id='"+id+"' where ano="+String.valueOf(ano);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
 }

@@ -132,4 +132,80 @@ public class TouristDaoImpl implements TouristDao{
         }
         return 0;
     }
+    @Override
+    public void change_tname(long tno, String tname) {
+        //将学号为sno的学生的名字改成sname
+        String sql="update Tourist set tname='"+tname+"' where tno="+String.valueOf(tno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_tpass(long tno, String tpass) {
+        String sql="update Tourist set tpass='"+tpass+"' where tno="+String.valueOf(tno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_id(long tno, String id) {
+        String sql="update Tourist set id='"+id+"' where tno="+String.valueOf(tno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_phone(long tno, String phone) {
+        String sql="update Tourist set phone='"+phone+"' where tno="+String.valueOf(tno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_borrow(long tno, long borrow) {
+        String sql="update Tourist set borrow='"+String.valueOf(borrow)+"' where tno="+String.valueOf(tno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
 }

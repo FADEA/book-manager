@@ -83,7 +83,7 @@ public class BooksDaoImpl implements BooksDao{
 
 
     @Override
-    public void insert(long bno, String bname, String author, String press, long amount, long btype, Date bday) {
+    public void insert(long bno, String bname, String author, String press, long amount, long btype, String bday) {
         String sql="insert into Books values("+String.valueOf(bno)+",'"+bname+"','"+author+"','"+press+"',"+String.valueOf(amount)+","+String.valueOf(btype)+",'"+bday+"')";
         try{
             conn= getConnection();
@@ -114,7 +114,7 @@ public class BooksDaoImpl implements BooksDao{
 
     @Override
     public int exist(long bno) {
-        String sql="select count(*) from Books where bno= "+String.valueOf(bno);
+        String sql="select amount from Books where bno= "+String.valueOf(bno);
         try{
             conn= getConnection();
             st=conn.createStatement();
@@ -132,4 +132,94 @@ public class BooksDaoImpl implements BooksDao{
         }
         return 0;
     }
+    @Override
+    public void change_bname(long bno, String bname) {
+        String sql="update Books set bname='"+bname+"' where bno="+String.valueOf(bno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_author(long bno, String author) {
+        String sql="update Books set author='"+author+"' where bno="+String.valueOf(bno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_press(long bno, String press) {
+        String sql="update Books set press='"+press+"' where bno="+String.valueOf(bno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_amount(long bno, long amount) {
+        String sql="update Books set amount='"+String.valueOf(amount)+"' where bno="+String.valueOf(bno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_btype(long bno, long btype) {
+        String sql="update Books set btype='"+String.valueOf(btype)+"' where bno="+String.valueOf(bno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_bday(long bno, String bday) {
+        String sql="update Books set bday='"+bday+"' where bno="+String.valueOf(bno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
 }

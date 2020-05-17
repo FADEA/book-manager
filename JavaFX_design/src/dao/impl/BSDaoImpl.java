@@ -81,7 +81,7 @@ public class BSDaoImpl implements BSDao{
     Statement st=null;
     ResultSet rs=null;
     @Override
-    public void insert(long bno, long sno, Date btime, Date rtime) {
+    public void insert(long bno, long sno, String btime, String rtime) {
         String sql="insert into BS values("+String.valueOf(bno)+","+String.valueOf(sno)+",'"+btime+"','"+rtime+"')";
         try{
             conn= getConnection();
@@ -97,7 +97,7 @@ public class BSDaoImpl implements BSDao{
 
     @Override
     public void erase(long bno, long sno) {
-        String sql="delete from BS where Bno = "+String.valueOf(bno) + "and Sno="+String.valueOf(sno);
+        String sql="delete from BS where Bno = "+String.valueOf(bno) + " and Sno="+String.valueOf(sno);
         try{
             conn=getConnection();
             st=conn.createStatement();
@@ -129,5 +129,35 @@ public class BSDaoImpl implements BSDao{
             release(conn, st, rs);
         }
         return 0;
+    }
+
+    @Override
+    public void change_btime(long bno, long sno, String btime) {
+        String sql="update BS set Btime='"+btime+"' where Sno="+String.valueOf(sno)+" and Bno="+String.valueOf(bno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
+    }
+
+    @Override
+    public void change_rtime(long bno, long sno, String rtime) {
+        String sql="update BS set Rtime='"+rtime+"' where Sno="+String.valueOf(sno)+" and Bno="+String.valueOf(bno);
+        try{
+            conn=getConnection();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            release(conn, st, rs);
+        }
     }
 }
