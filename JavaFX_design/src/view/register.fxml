@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<?import javafx.collections.FXCollections?>
+
+<GridPane alignment="CENTER" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="controller.Register" xmlns="http://javafx.com/javafx/10.0.2-internal">
+    <padding><Insets bottom="25" left="25" right="25" top="25" /></padding>
+    <Text text="注册" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+        <font>
+            <Font size="24.0" />
+        </font></Text>
+
+    <Label text=" 用户名：" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="密码：" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label text="确认密码：" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+    <Label text="注册类型：" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <ChoiceBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="管理员" />
+                <String fx:value="学生" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+
+
+    <HBox spacing="10" alignment="BOTTOM_RIGHT"
+          GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <Button text="注册"/>
+    </HBox>
+
+</GridPane>
