@@ -1,4 +1,5 @@
 package dao.impl;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -9,10 +10,10 @@ import dao.StudentDao;
 import entity.Student;
 
 public class StudentDaoImpl implements StudentDao{
-    private   String driver=null;
-    private   String url=null;
-    private   String user=null;
-    private   String password=null;
+    private String driver=null;
+    private String url=null;
+    private String user=null;
+    private String password=null;
     {
         try{
             //使用类加载器的方式加载资源配置文件，配置文件必须在SRC下
@@ -31,7 +32,7 @@ public class StudentDaoImpl implements StudentDao{
 
     }
     //获取连接对象
-    public  Connection getConnection(){
+    public Connection getConnection(){
         Connection conn=null;
         try{
             Class.forName(driver);
@@ -83,10 +84,11 @@ public class StudentDaoImpl implements StudentDao{
     @Override
     public void insert(long sno, String sname, String spass, String phone, String id, long borrow)
     //往学生表中插入一条完整的记录，不判断该表中是否存在有一条记录的sno与要插入的sno相同，其他的插入函数同理
-        {
+    {
         String sql="insert into Student values("+String.valueOf(sno)+",'"+sname+"','"+spass+"','"+phone+"','"+id+"',"+String.valueOf(borrow)+")";
         try{
             conn= getConnection();
+            System.out.println(conn);
             st=conn.createStatement();
             st.executeUpdate(sql);
         }

@@ -15,8 +15,8 @@ public class AdminsDaoImpl implements AdminsDao{
     private   String password=null;
     {
         try{
-            //使用类加载器的方式加载资源配置文件，配置文件必须在SRC下
-            InputStream  in=UserDaoImpl.class.getClassLoader().getResourceAsStream("jdbc.properties");
+            //使用类加载器的方式加载资源配置文件，配置文件必须在SRCz下
+            InputStream  in= UserDaoImpl.class.getClassLoader().getResourceAsStream("jdbc.properties");
             //专门用来操作properties
             Properties properties=new Properties();
             properties.load(in);
